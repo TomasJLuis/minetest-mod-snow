@@ -28,6 +28,11 @@ minetest.register_abm({
 		) then
 			minetest.set_node(pos, {name = "default:dirt"})
 		end
+		-- Eventualy change dirt_with_snow to dirt_with_grass if there is something hot near
+		local hotnear = minetest.find_node_near(pos, 3, {"group:hot"})
+		if hotnear ~= nil and name ~= "default:snow" and name ~= "default:snow_block" then
+			minetest.set_node(pos, {name = "default:dirt_with_grass"})
+		end
 	end
 })
 
